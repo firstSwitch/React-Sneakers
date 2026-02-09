@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Header(props) {
+function Header({ onClickCart, totalPrice }) {
     return(
         <header>
         <div className="headerLeft">
@@ -14,12 +14,12 @@ function Header(props) {
         </div>
         <div>
           <ul className="headerRight">
-            <li>
-             <img width={18} height={18} src="/img/cart.svg" alt="Cart"/>
-              <span onClick={props.onClickCart}>1205$</span>
+            <li onClick={onClickCart} style={{ cursor: "pointer" }}>
+              <img width={18} height={18} src="/img/cart.svg" alt="Cart" />
+              <span>{totalPrice}$</span>
             </li>
               <li className="favorite">
-               <Link to="favorites">
+               <Link to="/favorites">
                <img width={18} height={18} src="/img/heart.svg" alt="Heart"/>
                </Link>
               </li>

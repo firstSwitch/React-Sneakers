@@ -1,4 +1,4 @@
-function Drawer({onClose, onRemove, items = []}) {
+function Drawer({ onClose, onRemove, items = [], totalPrice = 0, taxPrice = 0 }) {
     return (
         <div className="overlay">
           <div className="drawer">
@@ -11,24 +11,19 @@ function Drawer({onClose, onRemove, items = []}) {
               items.length > 0 ? <div className="cartBlockItems">
               {
                 items.map((obj) => (
-                  <>
-                  <div className="cartItem">
-                <img className="cartImg" width={70} height={70} src={obj.imageUrl} alt="Sneakers" />
-                <div className="cartInfo">
-                  <p>{obj.title}</p>
-                  <b>{obj.price}$</b>
+                  <div key={obj.id} className="cartItem">
+                    <img className="cartImg" width={70} height={70} src={obj.imageUrl} alt="Sneakers" />
+                    <div className="cartInfo">
+                      <p>{obj.title}</p>
+                      <b>{obj.price}$</b>
+                    </div>
+                    <img
+                      className="removeBtn"
+                      onClick={() => onRemove(obj.id)}
+                      src="/img/btn-remove.svg"
+                      alt="Remove"
+                    />
                   </div>
-                <img className="removeBtn" onClick={() => onRemove(obj.id)} src="/img/btn-remove.svg" alt="Remove"/>
-              </div>
-                {/* <div className="cartItem">
-                  <img className="cartImg" width={70} height={70} src="/img/Sneakers/1.jpg" alt="Sneakers" />
-                  <div className="cartInfo">
-                    <p>Men's Nike Air Max 270 Sneakers</p>
-                    <b>1299$</b>
-                  </div>
-                  <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove"/>
-                </div> */}
-                </>
                 ))
               }
                <div className="cartTotalBlock">
@@ -36,12 +31,12 @@ function Drawer({onClose, onRemove, items = []}) {
                   <li>
                     <span>Total:</span>
                     <div></div>
-                    <b>4299$</b>
+                    <b>{totalPrice}$</b>
                   </li>
                   <li>
                     <span>The tax is 5%:</span>
                     <div></div>
-                    <b>214,95</b>
+                    <b>{taxPrice}$</b>
                   </li>
                 </ul>
                 <button className="greenButton">Checkout <img src="/img/arrow.svg" alt="Arrow"/></button>
